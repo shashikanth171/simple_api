@@ -37,6 +37,7 @@ class SimpleSiteInformationForm extends SiteInformationForm {
       '#default_value' => $default_value_for_api ,
       '#description' => t('Add the Site API Key, which will be used to get a node of "page" content type in json format'),
     ];
+    $form['actions']['submit']['#value'] = t('Update Configuration');
 
     return $form;
 
