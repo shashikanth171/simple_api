@@ -1,0 +1,6 @@
+simple_api.admin:
+  title: 'Simple API Module Settings'
+  description: 'Change settings here'
+  parent: system.admin_config_development
+  route_name: simple_api.content
+  weight: 100

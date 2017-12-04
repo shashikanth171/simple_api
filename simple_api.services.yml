@@ -1,0 +1,7 @@
+services:
+  simple_api.route_subscriber:
+    # Class to the custom RouteSubscriber
+    class: 'Drupal\simple_api\Routing\SimpleRouteSubscriber'
+    # Tell drupal to use the class while builfing routes
+    tags:
+      - { name:event_subscriber }

@@ -1,0 +1,7 @@
+simple_api.content:
+  path: '/hello2'
+  defaults:
+    _controller: '\Drupal\simple_api\Controller\SimpleController::content'
+    _title: 'Hello World'
+  requirements:
+    _permission: 'access content'

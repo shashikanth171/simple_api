@@ -1,0 +1,6 @@
+name: SimpleAPI
+description: Create API Keys for accessing Nodes of "page" content type.
+package: Custom
+
+type: module
+core: 8.x
