@@ -1,5 +1,5 @@
 name: SimpleAPI
-description: Create API Keys for accessing Nodes of "page" content type.
+description: create and use Site API Key to access node of 'page' content type in JSON format
 package: Custom
 
 type: module

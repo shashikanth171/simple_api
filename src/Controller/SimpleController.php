@@ -23,25 +23,32 @@ class SimpleController {
     // Load the node object using the $node_id from the arguments
     $node = Node::load($node_id);
 
-    // Get site configuration
-    $site_config = Drupal::config('system.site');
+    // $node is null when $node_id is invalid
+    if ($node !== NULL) {
+      // Get site configuration
+      $site_config = Drupal::config('system.site');
 
-    // Checks if siteapikey from the arguments matches with the siteapikey from site configuration
-    if ($siteapikey == $site_config->get('siteapikey')) {
+      // Checks if siteapikey from the arguments matches with the siteapikey from site configuration
+      if ($siteapikey == $site_config->get('siteapikey')) {
 
-      // Checks if node_id from the arguments belongs to a node of 'page' content type
-      if ( $node->getType() == "page" ) {
-        // Convert $node object to an array which will be used in reponse
-        $result = $node->toArray();
+        // Checks if node_id from the arguments belongs to a node of 'page' content type
+        if ( $node_type == "page" ) {
+          // Convert $node object to an array which will be used in reponse
+          $result = $node->toArray();
+        }
+        else{
+          // Error message if node_id from the arguments does not belong to a node of 'page' content type
+          $result["Error"] = "Given nid does not belong to a node 'page' content type";
+        }
       }
       else{
-        // Error message if node_id from the arguments does not belong to a node of 'page' content type
-        $result["Error"] = "Given nid does not belong to a node 'page' content type";
+        // Error message if siteapikey from the arguments does not match with the siteapikey from site configuration
+        $result["Error"] = 'access denied';
       }
     }
-    else{
-      // Error message if siteapikey from the arguments does not match with the siteapikey from site configuration
-      $result["Error"] = 'access denied';
+    else {
+      // Error if given nid is invalid
+      $result["Error"] = 'Invalid nid';
     }
     return $result;
   }
