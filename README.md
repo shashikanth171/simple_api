@@ -12,31 +12,34 @@ In this method you don't any additional settings to configure
 
 Access data by going to 'page_json/{siteapikey}/{node_id}', where {siteapikey} will be the Site API Key you set in Site Configuration Form and {node_id} is the nid of node you want to access
 
-#### On success: 
+#### On success:
 
 You will get node data in JSON format
 
-#### On failure: 
+#### On failure:
 
-An Error message of 
+An Error message of
 - 'access denied' if you use incorrect Site API Key
 - 'Given nid does not belong to a node 'page' content type' if given nid does not belong to a node of 'page' content type
+- 'Invalid nid' if given nid is invalid (i.e. node not exists with given nid (or) given nid is not an Integer)
 
 
 ### Method 2 : Using Rest resource 'page_rest_json/{siteapikey}/{node_id}'
 Before using this method
 - Enable core module 'rest'
 - Install and enable contributed module 'restui' (https://www.drupal.org/project/restui)
-- enable "Simple API GET" by going to 'admin/config/services/rest'
+- enable "Simple API GET" by going to 'admin/config/services/rest' with GET Method,
+json Accepted request formats and any  Authentication providers.
+
 
 Access data by going to 'page_rest_json/{siteapikey}/{node_id}?_format=json', where {siteapikey} will be the Site API Key you set in Site Configuration Form and {node_id} is the nid of node you want to access
 
-#### On success: 
+#### On success:
 
 You will get node data in JSON format
 
-#### On failure: 
+#### On failure:
 
-An Error message of 
+An Error message of
 - 'access denied' if you use incorrect Site API Key
 - 'Given nid does not belong to a node 'page' content type' if given nid does not belong to a node of 'page' content type
