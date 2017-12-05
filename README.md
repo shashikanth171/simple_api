@@ -1,5 +1,5 @@
 # simple_api
-Create and use Site API Key to access node of 'page' content type in JSON format
+Drupal 8 Module to create and use Site API Key to access node of 'page' content type in JSON format
 
 ## Using this module
 - Download the zip and extract this repo under modules folder inside the root of your drupal project.
