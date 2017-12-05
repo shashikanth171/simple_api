@@ -2,57 +2,45 @@
 
 namespace Drupal\simple_api\Plugin\rest\resource;
 
-use Drupal\Core\Session\AccountProxyInterface;
-use Drupal\rest\Plugin\ResourceBase;
-use Drupal\rest\ResourceResponse;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Psr\Log\LoggerInterface;
-use Drupal\node\Entity\Node;
 use Drupal;
+use Drupal\rest\ResourceResponse;
+use Drupal\rest\Plugin\ResourceBase;
+use Drupal\node\Entity\Node;
+use Drupal\simple_api\Controller\SimpleController;
+
 /**
- * Provides a resource to get view modes by entity and bundle. /{siteapikey}/{node_id}
+ * Provides a resource to get a node in JSON format.
  *
  * @RestResource(
  *   id = "simple_api_get_rest_resource",
  *   label = @Translation("Simple API get rest resource"),
  *   uri_paths = {
- *     "canonical" = "/post_json/{siteapikey}/{node_id}"
+ *     "canonical" = "/page_json1/{siteapikey}/{node_id}"
  *   }
  * )
  */
-
  class SimpleGetRestResource extends ResourceBase {
 
   /**
    * Responds to GET requests.
    *
-   * Returns a list of bundles for specified entity.
+   * Returns a node in JSON Format, if it of 'page' content type
    *
-   * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-   *   Throws exception expected.
+   * @param string $siteapikey
+   *   A string to use.
+   * @param string $node_id
+   *   Another string to use, should be a number.
    */
   public function get($siteapikey = NULL, $node_id = NULL) {
-    // You must to implement the logic of your REST Resource here.
+    // Implementing the logic of your REST Resource here.
 
-    $node = Node::load($node_id);
-    $node_array = $node->toArray();
-    // print_r($node_array['type'][0]['target_id']);
-    $site_config = Drupal::config('system.site');
-    if ($siteapikey == $site_config->get('siteapikey')) {
-      if ($node_array['type'][0]['target_id'] == "page") {
-        $result = $node_array;
-      }
-      else{
-        $result["Error"] = "Requested node is not of 'page' content type";
-      }
-      $response = new ResourceResponse($result);
-      $response->addCacheableDependency($result);
-    }
-    else{
-      $siteapikey_error["Error"] = 'access denied';
-      $response = new ResourceResponse($siteapikey_error);
-    }
+    // Get result from getNodeArray function
+    $result = SimpleController::getNodeArray($siteapikey, $node_id);
+
+    // Generate ResourceResponse from the result array
+    $response = new ResourceResponse($result);
+    $response->addCacheableDependency($result);
+
     return $response;
   }
 

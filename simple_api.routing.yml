@@ -1,7 +1,10 @@
-simple_api.content:
-  path: '/hello2'
+# Define a route, which when accessed gives JSON output.
+# Takes both {siteapikey} and {node_id} arguments.
+# All users with 'access content' permission are given access to this route.
+simple_api.getJson:
+  path: '/page_json/{siteapikey}/{node_id}'
   defaults:
-    _controller: '\Drupal\simple_api\Controller\SimpleController::content'
-    _title: 'Hello World'
+    _controller: '\Drupal\simple_api\Controller\SimpleController::getJson'
+    _title: 'Json Output of Node'
   requirements:
     _permission: 'access content'

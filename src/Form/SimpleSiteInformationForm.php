@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\system\Form\SiteInformationForm;
 
 /**
- * Configure site information form to add Site API Key field
+ * Configure site information form to add Site API Key field.
  */
 
 class SimpleSiteInformationForm extends SiteInformationForm {
@@ -14,19 +14,14 @@ class SimpleSiteInformationForm extends SiteInformationForm {
   * {@inheritdoc}
   */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /**
-    * Retrive the system.site configuration
-    */
+
+    // Retrive the system.site configuration.
     $site_config = $this->config('system.site');
 
-    /**
-    * Get the original Site Information Form
-    */
+    // Get the original Site Information Form.
     $form = parent::buildForm($form, $form_state);
 
-    /**
-    * Add Site API Key field to the form
-    */
+    // Add Site API Key field to the form.
     $default_value_for_api = "No API Key yet";
     if($site_config->get('siteapikey') != Null) {
       $default_value_for_api = $site_config->get('siteapikey');
@@ -47,10 +42,9 @@ class SimpleSiteInformationForm extends SiteInformationForm {
   * {@inheritdoc}
   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /**
-    * Retreiving Site API Key from Value of 'site_api_key_form_item' in Form
-    * Saving Site API Key to 'site_api_key' element of system.site
-    */
+
+    // Retreiving Site API Key from Value of 'site_api_key_form_item' in Form and
+    // saving Site API Key to 'site_api_key' element of system.site
     $this->config('system.site')
       ->set('siteapikey', $form_state->getValue('site_api_key_form_item'))
       ->save();

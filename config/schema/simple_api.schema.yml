@@ -1,6 +1,6 @@
 sytem.site:
   mapping:
-    #Adding Site API Key field
+    #Adding Site API Key
     siteapikey:
       type: string
       label: 'Site API Key'
