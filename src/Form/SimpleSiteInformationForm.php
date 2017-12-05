@@ -7,6 +7,9 @@ use Drupal\system\Form\SiteInformationForm;
 
 /**
  * Configure site information form to add Site API Key field.
+ *
+ * Used the article at 
+ * https://www.jaypan.com/tutorial/drupal-8-extending-core-configuration-extending-core-forms-and-overriding-core-routes
  */
 
 class SimpleSiteInformationForm extends SiteInformationForm {

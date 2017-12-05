@@ -5,6 +5,9 @@ namespace Drupal\simple_api\Routing;
 use Drupal\Core\Routing\RouteSubscriberBase;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+* Used this article http://valuebound.com/resources/blog/create-rest-resource-for-get-method-drupal-8
+*/
 class SimpleRouteSubscriber extends RouteSubscriberBase {
   /*
   * {@inheritdoc}

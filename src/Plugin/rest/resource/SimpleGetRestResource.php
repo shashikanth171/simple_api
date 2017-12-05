@@ -18,6 +18,8 @@ use Drupal\simple_api\Controller\SimpleController;
  *     "canonical" = "/page_rest_json/{siteapikey}/{node_id}"
  *   }
  * )
+ *
+ * Used this article http://valuebound.com/resources/blog/create-rest-resource-for-get-method-drupal-8
  */
  class SimpleGetRestResource extends ResourceBase {
 
@@ -40,6 +42,9 @@ use Drupal\simple_api\Controller\SimpleController;
 
     // Generate ResourceResponse from the result array
     $response = new ResourceResponse($result);
+
+    // Add Cachebility metadata using
+    // https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21Renderer.php/function/Renderer%3A%3AaddCacheableDependency/8.2.x
     $response->addCacheableDependency($result);
 
     return $response;
