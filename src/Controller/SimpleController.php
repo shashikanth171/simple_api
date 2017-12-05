@@ -35,7 +35,7 @@ class SimpleController {
       if ($siteapikey == $site_config->get('siteapikey')) {
 
         // Checks if node_id from the arguments belongs to a node of 'page' content type
-        if ( $node_type == "page" ) {
+        if ( $node->getType() == "page" ) {
           // Convert $node object to an array which will be used in reponse
           // Read more about toArray() at
           // https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21Entity.php/function/Entity%3A%3AtoArray/8.4.x
