@@ -13,9 +13,9 @@ use Drupal\simple_api\Controller\SimpleController;
  *
  * @RestResource(
  *   id = "simple_api_get_rest_resource",
- *   label = @Translation("Simple API get rest resource"),
+ *   label = @Translation("Simple API GET"),
  *   uri_paths = {
- *     "canonical" = "/page_json1/{siteapikey}/{node_id}"
+ *     "canonical" = "/page_rest_json/{siteapikey}/{node_id}"
  *   }
  * )
  */
@@ -34,8 +34,9 @@ use Drupal\simple_api\Controller\SimpleController;
   public function get($siteapikey = NULL, $node_id = NULL) {
     // Implementing the logic of your REST Resource here.
 
-    // Get result from getNodeArray function
-    $result = SimpleController::getNodeArray($siteapikey, $node_id);
+    // Get result from getNodeArray function from Drupal\simple_api\Controller\SimpleController
+    $controller_object = new SimpleController;
+    $result = $controller_object->getNodeArray($siteapikey, $node_id);
 
     // Generate ResourceResponse from the result array
     $response = new ResourceResponse($result);
