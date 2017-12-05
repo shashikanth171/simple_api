@@ -1,6 +1,8 @@
 <?php
 
 namespace Drupal\simple_api\Controller;
+
+
 class SimpleController {
   public function content() {
     return array(
